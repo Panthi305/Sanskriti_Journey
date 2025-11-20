@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanskriti Journey</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Background Video and Hero Section -->
+    <header>
+        <div class="container1">
+            <div class="home_header_info">
+                <h1 class="typewrite" data-period="2000"
+                    data-type='[ "Incredible!ndia", "Dekho Apna Desh!", "Explore the Indian Culture and Heritage." ]'>
+                </h1>
+                <p>India is a country dotted with stunning wildlife diversity, and rich traditions. While the Western
+                    coast greets you with mouth-watering delicacies, the East part invites you to experience its
+                    greenery.</p>
+                <a href="india.html">Start Your Journey</a>
+            </div>
+        </div>
+        <div class="video">
+            <video id="video" autoplay loop muted>
+                <source type="video/mp4" src="v1.mp4" />
+            </video>
+        </div>
+    </header>
+
+    <!-- Sign In Modal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLabel">Log In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="modal-text">Login in to continue your journey through history.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn button1 btn-lg px-4" onclick="window.location.href='login.html'">Log
+                            In</button>
+                        <button class="btn button2 btn-lg px-4" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content welcome-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="welcomeModalLabel">🌟 Welcome to Sanskriti Journey! 🌟</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Embark on an incredible journey through India's rich heritage, culture, and traditions. 🏛️✨</p>
+                    <img src="https://gumlet.assettype.com/freepressjournal/2023-04/bade2227-b961-4ae9-b9f7-64227b9260af/SundayRead_Lead_Rani_Ki_Vav__Patan.jfif"
+                        alt="Welcome Image" class="welcome-img">
+                    <p>Discover stories, explore monuments, and experience the magic of history! 🎭🌏</p>
+                    <button class="b1" data-bs-dismiss="modal" style="margin-top: 0px!important;">Let's Explore
+                        🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transparent Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home" data-bs-toggle="modal" data-bs-target="#welcomeModal">
+                <img src="images/logo2_transparent_dark.png" alt="Sanskriti Journey Logo" height="50px" width="300px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="india.html">Start Your Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="contact-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button onclick="scrollToTop()" id="backToTop" title="Go to top">⬆</button>
+
+
+    <!-- about us section -->
+    <section id="about" class="about-section">
+        <div class="container text-center">
+            <h2 class="about-title animate">Legends, Landmarks, and Legacy: A Timeless Journey</h2>
+            <p class="about-subtitle animate">Every place whispers a story, every tradition holds a meaning, step into
+                the past and rediscover the history that shaped us.</p>
+
+            <!-- Image Grid with Flip Cards -->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="flip-card animate-left">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/about1.jpg" alt="Taj Mahal" class="img-fluid">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Taj Mahal</h3>
+                                <p>A timeless symbol of love and a marvel of architecture. Its stunning
+                                    marble design and rich history make it a must-see treasure.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="flip-card animate-right">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/about2.jpg" alt="Brihadeeswarar Temple" class="img-fluid">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Brihadeeswarar Temple</h3>
+                                <p>A Chola-era masterpiece in Thanjavur. With its towering vimana and intricate
+                                    carvings, it showcases South India's rich heritage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="flip-card animate-left">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/about3.jpg" alt="Konark Sun Temple" class="img-fluid">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Konark Sun Temple</h3>
+                                <p>a breathtaking ode to the Sun God. With its chariot-shaped design and intricate
+                                    carvings, this marvel captures the grandeur of Eastern India’s past.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="flip-card animate-right">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="images/about4.jpg" alt="Chittorgarh Fort" class="img-fluid">
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Chittorgarh Fort</h3>
+                                <p> India’s largest fort and a symbol of Rajput bravery. Its majestic walls, grand
+                                    palaces, and heroic legends bring Western India’s history to life.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description Below Images -->
+            <div class="about-text animate">
+                <p>India’s heritage is a beautiful journey through time, filled with ancient temples, grand forts, and
+                    timeless stories. Every place has a history to tell, from the battles fought in mighty forts to the
+                    prayers whispered in sacred temples. Step into the past, explore legendary landmarks, and discover
+                    the rich culture and traditions that make our history so special.</p>
+                <a href="about.html" class="b1">Know More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Secction -->
+    <h2 class="carousel-title" style="text-align: center;margin: 30px;">Infinite Views, One Gallery</h2>
+    <div class="carousel-container1 animate">
+        <button class="prev1" onclick="prevSlide()">&#10094;</button>
+        <div class="carousel1">
+            <div class="card1"
+                style="background-image: url('https://www.trawell.in/admin/images/upload/13304719mahabat_maqbara.jpg')">
+                c
+                <div class="overlay1">Explore Gujarat's heritage sites!</div>
+            </div>
+            <div class="card1"
+                style="background-image: url('https://www.tripsavvy.com/thmb/BmW2uZDMASh89TViDjRezrbMVVA=/1250x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-487516327-573573c45f9b58723d4208d4.jpg')">
+                <div class="overlay1">Enjoy the scenic beauty of Gujarat!</div>
+            </div>
+            <div class="card1" style="background-image: url('https://www.akorndmc.com/media/6675/14.jpg')">
+                <div class="overlay1">Experience the rich culture and traditions!</div>
+            </div>
+            <div class="card1"
+                style="background-image: url('https://i.pinimg.com/originals/77/7d/71/777d7114ce6cfa7056673e23cd4e5051.jpg')">
+                <div class="overlay1">Visit famous temples and landmarks!</div>
+            </div>
+            <div class="card1"
+                style="background-image: url('https://www.holidify.com/blog/wp-content/uploads/2014/06/Fatehpur-Sikri.jpg')">
+                <div class="overlay1">Explore the authentic style of India!</div>
+            </div>
+            <div class="card1"
+                style="background-image: url('https://www.swantour.com/blogs/wp-content/uploads/2018/12/Dwarkadhish-Temple.jpg')">
+                <div class="overlay1">Adventure awaits in Gujarat's landscapes!</div>
+            </div>
+            <div class="card1"
+                style="background-image: url('https://www.tusktravel.com/blog/wp-content/uploads/2022/02/South-India-Beaches.jpg')">
+                <div class="overlay1">Relax at the beautiful beaches!</div>
+            </div>
+        </div>
+        <button class="next1" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <button class="b2" onclick="window.location.href='gallery.html'">View All</button>
+
+    <!-- Testimonials -->
+    <h2 class="mt-4 feedback">Testimonials</h2>
+    <div class="carousel-container2 animate-left">
+        <div class="testimonial-row" id="testimonialRow">
+            <!-- Users will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container animate">
+
+                <!-- Contact Form -->
+                <div class="contact-box">
+                    <h2>Contact Us</h2>
+                    <p style="color: #9c7051;">Whether you have a question💬, feedback, or just want to say hello🤝,
+                        we'd love to hear from you!
+                    </p>
+
+                    <form id="contact-form">
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="b3">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Corrected Map for Sanand Circle, Signature 2, Ahmedabad -->
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.9708608721785!2d72.4902920750907!3d22.988098979198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b0f57f45edf%3A0x371e4963c483ec2d!2sLJ%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1739093177346!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <h3>Sanskriti Journey</h3>
+                <h6>Step into India's Soul – Where Heritage Meets You!</h6>
+                <p>Sanskriti Journey unveils India's rich heritage, from majestic monuments to timeless temples. Explore
+                    history, embrace tradition!</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#" id="contact-link1">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>&#9993; info@sanskritijourney.com</p> <!-- Envelope Icon -->
+                <p>&#9742; +91 98765 43210</p> <!-- Telephone Icon -->
+                <p>&#128205; AHEMDABAD, India</p> <!-- Location Pin Icon -->
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a class="a1"><i class="fab fa-twitter"></i></a>
+                <a class="a1"><i class="fab fa-instagram"></i></a>
+                <a class="a1"><i class="fab fa-youtube"></i></a>
+                <a class="a1"><i class="fab fa-facebook"></i></a>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // JS for Navbar and Typing Effect
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                let signInModal = new bootstrap.Modal(document.getElementById('signInModal'));
+                signInModal.show();
+            }, 7000);
+
+            const navbar = document.querySelector(".navbar");
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        });
+
+        var TxtType = function (el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 3000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function () {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+            var that = this;
+            var delta = 150 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+
+            setTimeout(function () {
+                that.tick();
+            }, delta);
+        };
+
+        window.onload = function () {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = ['Incredible!ndia', 'Dekho Apna Desh!', 'Explore the Indian Heritage.'];
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], toRotate, period);
+                }
+            }
+        };
+        document.addEventListener("DOMContentLoaded", function () {
+            function revealOnScroll() {
+                const elements = document.querySelectorAll(".animate-left, .animate-right, .animate");
+                elements.forEach((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 100) {
+                        el.classList.add("show");
+                    }
+                });
+            }
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); // Trigger on load
+        });
+
+        //testimonial
+        const users = [
+            { img: " https://tse1.mm.bing.net/th?id=OIP.RQL9Lg3w5CqI8jBejL2hoAHaG0&pid=Api&P=0&h=180 ", text: "Amazing experience!" },
+            { img: "https://tse1.mm.bing.net/th?id=OIP.n-76d4Sh0jA5ZDeEbzZXlQHaE8&pid=Api&P=0&h=180", text: "Loved the places!" },
+            { img: "https://tse3.mm.bing.net/th?id=OIP.q6Z5BzLEsd5OhnVtn6_a5gAAAA&pid=Api&P=0&h=180", text: "Great atmosphere!" },
+            { img: "https://tse4.mm.bing.net/th?id=OIP.UWWbRzsVfhf_BmzdTTpLRQHaE8&pid=Api&P=0&h=180", text: "Must-visit locations!" },
+            { img: "https://tse2.mm.bing.net/th?id=OIP.GfSTukuLDFzmGWKitxdHYgHaD4&pid=Api&P=0&h=180", text: "A wonderful journey!" },
+            { img: "https://tse2.mm.bing.net/th?id=OIP.W2X5hpgEcOe0xz0_sMDApwHaLH&pid=Api&P=0&h=180", text: "Highly recommended!" },
+            { img: "https://tse4.mm.bing.net/th?id=OIP.nxPugWhRyx7Sji1XFjGOvAAAAA&pid=Api&P=0&h=180", text: "Beautiful heritage sites!" },
+            { img: "https://tse2.mm.bing.net/th?id=OIP.ejrbl9JCRc7UROtrSNuAvgHaE8&pid=Api&P=0&h=180", text: "Fantastic food options!" },
+            { img: "https://tse3.mm.bing.net/th?id=OIP.iVEKdf_orJAcfuWt2OrzewAAAA&pid=Api&P=0&h=180", text: "Unforgettable memories!" },
+            { img: "https://tse2.mm.bing.net/th?id=OIP.UjvKLNn3CTdIQW-7ial8YAHaHa&pid=Api&P=0&h=180", text: "Will visit again!" },
+            { img: "https://tse3.mm.bing.net/th?id=OIP.7H05nhOEk8rG_4lclHrWTwHaF7&pid=Api&P=0&h=180", text: "Amazing guides!" },
+            { img: "https://tse3.mm.bing.net/th?id=OIP.5HTcc59U28QkXBHyT-8ArgHaGH&pid=Api&P=0&h=180", text: "Best experience ever!" }
+        ];
+
+        let visibleUsers = [...users.slice(0, 9)]; // Start with users 1-9
+        let userIndex = 9; // Next user to be added
+
+        const rowContainer = document.getElementById("testimonialRow");
+
+        function renderUsers() {
+            rowContainer.innerHTML = ""; // Clear existing
+            visibleUsers.forEach(user => {
+                let div = document.createElement("div");
+                div.classList.add("testimonial-item");
+                div.innerHTML = `
+                    <img src="${user.img}" alt="User">
+                    <div class="testimonial-content">${user.text}</div>
+                `;
+                rowContainer.appendChild(div);
+            });
+        }
+
+        function transitionUsers() {
+            let firstUser = rowContainer.firstChild;
+
+            if (firstUser) {
+                firstUser.classList.add("removed"); // Fade out effect
+
+                setTimeout(() => {
+                    visibleUsers.shift(); // Remove first user
+
+                    // Add the next user in sequence
+                    visibleUsers.push(users[userIndex % users.length]);
+                    userIndex++;
+
+                    renderUsers(); // Re-render with smooth transition
+                }, 800); // Matches the CSS transition time
+            }
+        }
+
+        function startCarousel() {
+            renderUsers();
+            setInterval(transitionUsers, 3000); // Change user every 3 seconds
+        }
+
+        startCarousel();
+
+        //gallery 
+        let carousel = document.querySelector('.carousel1');
+
+        function updateCarousel() {
+            let cards = document.querySelectorAll('.card1');
+            let middleIndex = Math.floor(cards.length / 2);
+
+            cards.forEach((card, index) => {
+                const offset = index - middleIndex; // Center image
+                const scale = 1 - Math.abs(offset) * 0.1;
+                const opacity = Math.abs(offset) > 2 ? 0 : 1;
+                const rotationY = offset * -20; // Tilt effect for left and right images
+
+                card.style.transform = `translateX(${offset * 220}px) scale(${scale}) rotateY(${rotationY}deg)`;
+                card.style.zIndex = 10 - Math.abs(offset);
+                card.style.opacity = opacity;
+
+                // Apply hover effect to the middle card
+                if (index === middleIndex) {
+                    card.classList.add("default-hover");
+                } else {
+                    card.classList.remove("default-hover");
+                }
+            });
+        }
+
+        function nextSlide() {
+            let firstCard = document.querySelector('.card1');
+            carousel.appendChild(firstCard.cloneNode(true)); // Duplicate first card at the end
+            carousel.removeChild(firstCard); // Remove the first card
+            setTimeout(updateCarousel, 100); // Update after transition
+        }
+
+        function prevSlide() {
+            let cards = document.querySelectorAll('.card1');
+            let lastCard = cards[cards.length - 1];
+            carousel.insertBefore(lastCard.cloneNode(true), carousel.firstChild); // Clone last card at start
+            carousel.removeChild(lastCard); // Remove last card
+            setTimeout(updateCarousel, 100);
+        }
+
+        updateCarousel();
+
+        // contact 
+        document.addEventListener("DOMContentLoaded", function () {
+            const contactSection = document.querySelector(".contact-section");
+            const contactLink = document.getElementById("contact-link");
+            const contactLink1 = document.getElementById("contact-link1");
+
+            // Initially hide the contact section
+            contactSection.style.display = "none";
+
+            contactLink.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                contactSection.style.display = "block"; // Show contact section
+
+                // Smooth scroll to the contact section
+                contactSection.scrollIntoView({ behavior: "smooth" });
+            });
+            contactLink1.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                contactSection.style.display = "block"; // Show contact section
+
+                // Smooth scroll to the contact section
+                contactSection.scrollIntoView({ behavior: "smooth" });
+            });
+        });
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            alert("Thank you for contacting us!");
+            this.reset();
+        });
+
+        // Back to Top Button Visibility
+        window.onscroll = function () {
+            let backToTop = document.getElementById("backToTop");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        };
+
+        // Smooth Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+    </script>
+
+</body>
+
+</html>

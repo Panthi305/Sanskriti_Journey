@@ -1,0 +1,362 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #faddb2, #db9f67);
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: transparent;
+    transition: background 0.4s ease-in-out;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+}
+
+.navbar.scrolled,
+.navbar:hover {
+    background: white !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link {
+    color: white !important;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-item .active {
+    color: red !important;
+}
+
+.navbar.scrolled .nav-link,
+.navbar:hover .nav-link {
+    color: black !important;
+}
+
+.navbar-toggler {
+    border: none;
+    background: transparent;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+    transition: filter 0.3s ease-in-out;
+}
+
+.navbar.scrolled .navbar-toggler-icon,
+.navbar:hover .navbar-toggler-icon {
+    filter: invert(0);
+}
+
+.navbar-brand img {
+    height: 50px;
+    filter: brightness(1.2);
+}
+
+.navbar .nav-link:hover {
+    color: red !important;
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        background: transparent;
+    }
+
+    .navbar .nav-link {
+        color: black !important;
+    }
+
+    .navbar-toggler-icon {
+        filter: invert(0);
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 0;
+    }
+}
+
+/* Hero Section */
+.hero1 {
+    width: 100%;
+    height: 100vh;
+    background: url('https://images.adsttc.com/media/images/5964/d4d9/b22e/384f/6300/0185/large_jpg/Jama_Masjid__Ahmedabad_01.jpg?1499780304') no-repeat center center/cover;
+    position: relative;
+    animation: changeBackground 18s infinite linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes changeBackground {
+
+    0%,
+    100% {
+        background-image: url('https://live.staticflickr.com/65535/52684320966_be238d21a9_b.jpg');
+    }
+
+    33% {
+        background-image: url('https://s01.sgp1.cdn.digitaloceanspaces.com/article/104626-zvsvxfkqvi-1541166914.jpg');
+    }
+
+    66% {
+        background-image: url('https://images.adsttc.com/media/images/5964/d4d9/b22e/384f/6300/0185/large_jpg/Jama_Masjid__Ahmedabad_01.jpg?1499780304');
+    }
+}
+
+/* Tabs Section Styling */
+.tabs-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+}
+
+/* Adding spacing between nav-tab items */
+.nav-tabs .nav-item {
+    margin-right: 20px;
+}
+
+.tab-pane {
+    padding: 30px 15px;
+    text-align: left;
+}
+
+/* About Tab Image Styling */
+.about-img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+/* Gallery Hover Effect */
+.gallery-images img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-images img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* CSS for How to Get There Section */
+.how-to-get-there {
+    background-color: #faf4ed;
+    /* Subtle background color */
+    padding: 60px 20px;
+    margin-top: 40px;
+    /* Optional extra spacing above section */
+}
+
+.how-to-get-there h2 {
+    font-weight: 600;
+    color: #333;
+}
+
+.how-to-get-there .transport-option {
+    border-bottom: 1px solid #e3ddd7;
+    padding-bottom: 20px;
+}
+
+.how-to-get-there .transport-option:last-child {
+    border-bottom: none;
+    /* Remove border on the last item */
+}
+
+.how-to-get-there .icon i {
+    font-size: 30px;
+    color: #ce9a6f;
+    /* Customize icon color */
+}
+
+.how-to-get-there .transport-option h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ce9a6f;
+    /* Match icon color or use your brand color */
+}
+
+.how-to-get-there .transport-option p {
+    margin-bottom: 0;
+    color: #666;
+}
+
+/* Nearby Attractions Section */
+.nearby-attractions h2 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Wrapper to hold image and overlay */
+/* Ensure each image container has a fixed height */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    width: 100%;
+    height: 400px;
+    /* Adjust the height as needed */
+}
+
+/* Images will cover the container uniformly */
+.attraction-image {
+    width: 450px !important;
+    height: 350px !important;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Overlay styling */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 460px !important;
+    height: 355px !important;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Semi-transparent overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Reveal overlay on hover */
+.image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+/* Slight zoom effect on hover */
+.image-container:hover .attraction-image {
+    transform: scale(1.05);
+}
+
+/* Overlay text styling */
+.overlay-text {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+}
+
+/* footer section */
+.footer {
+    background: #111;
+    color: #ddd;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-about {
+    flex: 1;
+    max-width: 300px;
+    /* Adjust width for proper alignment */
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer h3,
+.footer h4 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-social a {
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    color: #f39c12;
+}
+
+/* Fixed Vertical Sidebar */
+.sidebar-menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 999;
+    background-color: #db9f67;
+    border-radius: 8px 0 0 8px;
+    padding: 10px 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjust spacing between icons */
+.sidebar-menu .nav-item {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.sidebar-menu .nav-link {
+    color: #333;
+    font-size: 24px;
+    /* Increase or decrease icon size here */
+    padding: 8px;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+/* Hover effect for icons */
+.sidebar-menu .nav-link:hover {
+    color: #ff6600;
+    /* Change to your preferred hover color */
+}

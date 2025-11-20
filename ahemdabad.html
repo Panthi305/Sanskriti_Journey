@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmedabad Heritage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="ahemdabad.css">
+</head>
+
+<body>
+    <!-- Transparent Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home" data-bs-toggle="modal" data-bs-target="#welcomeModal">
+                <img src="images/logo2_transparent_dark.png" alt="Sanskriti Journey Logo" height="50px" width="300px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="india.html">Start Your Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Bootstrap Fullscreen Carousel -->
+    <div id="heritageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heritageCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heritageCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heritageCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#heritageCarousel" data-bs-slide-to="3"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active"
+                style="background-image: url('https://www.gujarattourism.com/content/dam/gujrattourism/images/heritage-sites/jama-(jumma)-masjid/Jama-(Jumma)-Masjid-Thumbnail.jpg');">
+                <div class="carousel-caption">
+                    <h1>Historic City of Ahmedabad</h1>
+                    <p>Step into India's First UNESCO World Heritage City.</p>
+                </div>
+            </div>
+            <div class="carousel-item"
+                style="background-image: url('https://www.lasociedadgeografica.com/blog/uploads/2020/09/sidi-sayed-mosque.jpg');">
+                <div class="carousel-caption">
+                    <h1>Sidi Saiyyed Mosque</h1>
+                    <p>Famous for the mesmerizing 'Tree of Life' lattice window.</p>
+                </div>
+            </div>
+            <div class="carousel-item"
+                style="background-image: url('https://www.gujarattourism.com/content/dam/gujrattourism/images/heritage-sites/bai-harir-ni-vav/Bai-Harir-ni-Vav-Banner.jpg');">
+                <div class="carousel-caption">
+                    <h1>Bai Harir ni Vav</h1>
+                    <p>A stunning 15th-century stepwell of Indo-Islamic architecture.</p>
+                </div>
+            </div>
+            <div class="carousel-item"
+                style="background-image: url('http://www.go2india.in/gujarat/images/jhulta-minar.JPG');">
+                <div class="carousel-caption">
+                    <h1>Julta Minara</h1>
+                    <p>The mysterious 'Shaking Minarets' of Ahmedabad.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container mt-5">
+        <h2 class="text-center main-title">Ahmedabad's Heritage Sites</h2>
+        <div class="custom-card-container">
+            <div class="card custom-card">
+                <img src="https://travelogyindia.b-cdn.net/blog/wp-content/uploads/2015/01/Historic-City-of-Ahmedabad.jpg"
+                    class="card-img-top" alt="Historic City">
+                <div class="card-body">
+                    <h5 class="card-title">Historic City</h5>
+                    <p class="card-text">India's first UNESCO Heritage City.</p>
+                    <a href="historic_city.html" class="btn btn-dark">Explore</a>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <img src="http://3.bp.blogspot.com/-N4Yq3Fit2h0/VOC1faVOcxI/AAAAAAAAUlc/b-d-KnWFBsY/s1600/Sidi%2BSaiyyed%2BMosque%2Bahmedabad%2Bjali%2Bback%2Bside.jpg"
+                    class="card-img-top" alt="Sidi Saiyyed Mosque">
+                <div class="card-body">
+                    <h5 class="card-title">Sidi Saiyyed Mosque</h5>
+                    <p class="card-text">Famous for the 'Tree of Life'.</p>
+                    <a href="sidi_saiyyed_mosque.html" class="btn btn-dark">Explore</a>
+                </div>
+            </div>
+            <div class="card custom-card">
+                <img src="https://www.trawell.in/admin/images/upload/144785748Ahmedabad_Jhulta_Minar.jpg"
+                    class="card-img-top" alt="Julta Minara">
+                <div class="card-body">
+                    <h5 class="card-title">Julta Minara</h5>
+                    <p class="card-text">The 'Shaking Minarets' of Ahmedabad.</p>
+                    <a href="julta_minarets.html" class="btn btn-dark">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mt-5">
+        <h2 class="text-center main-title">Places to Visit</h2>
+        <div class="custom-card-container">
+            <!-- Flip Card 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://www.holidify.com/images/compressed/2480.jpg" alt="Sabarmati Ashram"
+                            class="card-img">
+                        <h5>Sabarmati Ashram</h5>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Walk through history at Sabarmati Ashram, the residence of Mahatma Gandhi. Explore the
+                            museum, see his belongings, and understand the journey of India's independence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flip Card 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://dr7f10k1l6bnm.cloudfront.net/wp-content/uploads/2024/05/manek-chowk-1.jpg"
+                            alt="Manek Chowk" class="card-img">
+                        <h5>Manek Chowk Night Market</h5>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Visit the vibrant Manek Chowk at night for a street food experience like no other. Taste
+                            delicious local dishes like pav bhaji, chocolate sandwich, and kulfi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flip Card 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://www.gujarattourism.com/content/dam/gujrattourism/images/flora--fauna/kankaria-lake/Kankaria-Lake-Thumbnail.jpg"
+                            alt="Kankaria Lake" class="card-img">
+                        <h5>Kankaria Lake</h5>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>Enjoy a relaxing evening at Kankaria Lake, a perfect spot for boating, toy train rides, and
+                            visiting the zoo. A great place for families and adventure lovers alike!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <h3>Sanskriti Journey</h3>
+                <h6>Step into India's Soul – Where Heritage Meets You!</h6>
+                <p>Sanskriti Journey unveils India's rich heritage, from majestic monuments to timeless temples. Explore
+                    history, embrace tradition!</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#" id="contact-link1">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>&#9993; info@sanskritijourney.com</p> <!-- Envelope Icon -->
+                <p>&#9742; +91 98765 43210</p> <!-- Telephone Icon -->
+                <p>&#128205; AHEMDABAD, India</p> <!-- Location Pin Icon -->
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a class="a1"><i class="fab fa-twitter"></i></a>
+                <a class="a1"><i class="fab fa-instagram"></i></a>
+                <a class="a1"><i class="fab fa-youtube"></i></a>
+                <a class="a1"><i class="fab fa-facebook"></i></a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- 💬 Chatbot (Basic FAQ) -->
+    <button id="chatbot-btn" class="custom-chatbot-btn">Chat with Us</button>
+    <div id="chatbot-box" class="custom-chatbot-box d-none">
+        <p>Ask me about Ahmedabad!</p>
+        <input type="text" id="user-question" placeholder="Type your question...">
+        <button onclick="chatReply()">Send</button>
+        <p id="chat-reply"></p>
+    </div>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JS for Navbar and Typing Effect
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const navbar = document.querySelector(".navbar");
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        });
+        // Toggle chatbot visibility when clicking the button
+        document.getElementById("chatbot-btn").addEventListener("click", function () {
+            let chatbotBox = document.getElementById("chatbot-box");
+            chatbotBox.classList.toggle("d-none");
+        });
+
+        // Chat reply function to provide basic responses
+        function chatReply() {
+            let userQuestion = document.getElementById("user-question").value.toLowerCase();
+            let reply = "I don't have an answer for that.";
+
+            if (userQuestion.includes("heritage"))
+                reply = "Ahmedabad is India's first UNESCO Heritage City!";
+            if (userQuestion.includes("food"))
+                reply = "You must try Khaman and Jalebi-Fafda here!";
+
+            document.getElementById("chat-reply").innerText = reply;
+        }
+    </script>
+
+</body>
+
+</html>

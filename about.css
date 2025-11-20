@@ -1,0 +1,533 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #faddb2, #db9f67);
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: transparent;
+    transition: background 0.4s ease-in-out;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 20px;
+    /* Adjust spacing between links */
+}
+
+/* When scrolled or hovered, navbar turns white */
+.navbar.scrolled,
+.navbar:hover {
+    background: white !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar links */
+.navbar .nav-link {
+    color: white !important;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-item .active {
+    color: red !important;
+}
+
+/* When hovered or scrolled, change text to black */
+.navbar.scrolled .nav-link,
+.navbar:hover .nav-link {
+    color: black !important;
+}
+
+/* Navbar toggle button */
+.navbar-toggler {
+    border: none;
+    background: transparent;
+}
+
+/* Navbar toggle icon color */
+.navbar-toggler-icon {
+    filter: invert(1);
+    /* Makes the icon white */
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Change icon color when navbar is hovered or scrolled */
+.navbar.scrolled .navbar-toggler-icon,
+.navbar:hover .navbar-toggler-icon {
+    filter: invert(0);
+    /* Makes the icon black */
+}
+
+/* Ensure navbar brand logo visibility */
+.navbar-brand img {
+    height: 50px;
+    filter: brightness(1.2);
+}
+
+.navbar .nav-link:hover {
+    color: red !important;
+}
+
+/* Smooth transition for navbar */
+@media (max-width: 992px) {
+    .navbar {
+        background: transparent;
+        /* Slight white for mobile */
+    }
+
+    .navbar .nav-link {
+        color: black !important;
+    }
+
+    .navbar-toggler-icon {
+        filter: invert(0);
+        /* Black icon for mobile */
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 0;
+        /* Remove margin for mobile */
+    }
+}
+
+/* Hero Section */
+.hero1 {
+    width: 100%;
+    height: 100vh;
+    background: url('https://cdn.theculturetrip.com/wp-content/uploads/2018/02/feature-image-v1-1.jpg') no-repeat center center/cover;
+    position: relative;
+    animation: changeBackground 18s infinite linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes changeBackground {
+
+    0%,
+    100% {
+        background-image: url('https://www.tripsavvy.com/thmb/-vECufXNM64r2-wMA2x0diuuotI=/2121x1414/filters:fill(auto,1)/GettyImages-673530462-591c41cc5f9b58f4c05ef4d3.jpg');
+    }
+
+    33% {
+        background-image: url('https://indiator.com/tourist-places/wp-content/uploads/2017/02/amer-fort-1.jpg');
+    }
+
+    66% {
+        background-image: url('https://images.squarespace-cdn.com/content/v1/5a3bb03b4c326d76de73ddaa/57c33904-63b8-4116-8ae3-b858074ca92e/The+Common+Wanderer-6064-2.jpg');
+    }
+}
+
+.overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling */
+.hero1-content {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-title {
+    font-size: 5rem;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideIn 2s forwards ease-out;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.2;
+}
+
+.top-text {
+    display: block;
+    font-size: 5rem;
+}
+
+.bottom-text {
+    display: block;
+    font-size: 4rem;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 3s forwards ease-in-out 1s;
+}
+
+/* Curved Line Styling */
+.curved-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 150px;
+}
+
+/* Line Animation */
+.line-animate.first-line {
+    animation: drawLine 2s forwards ease-in-out;
+}
+
+.line-animate.second-line {
+    animation: drawLine 2s forwards ease-in-out 1.7s;
+    /* Starts after the first line animation completes */
+}
+
+/* Animation Keyframes */
+@keyframes drawLine {
+    from {
+        stroke-dashoffset: 1000;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.curved-line path {
+    stroke: white;
+    stroke-width: 3;
+    fill: transparent;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .main-title {
+        font-size: 4rem;
+    }
+
+    .top-text,
+    .bottom-text {
+        font-size: 3.5rem;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-title {
+        font-size: 3.5rem;
+    }
+
+    .top-text,
+    .bottom-text {
+        font-size: 3rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .top-text,
+    .bottom-text {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .top-text,
+    .bottom-text {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        font-size: 0.8rem;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .top-text,
+    .bottom-text {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.7rem;
+    }
+
+    .navbar-brand img {
+        height: 35px;
+    }
+
+    .navbar {
+        padding: 8px 15px;
+    }
+}
+
+/* ABOUT SECTION BUT USINF PARALLAX */
+.parallax {
+    position: relative;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.content-section1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.image-container1 {
+    width: 50%;
+    height: 550px;
+    background-size: cover;
+    background-position: center;
+}
+
+.row-reverse {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .text-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+/* Back to Top Button */
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+
+#backToTop:hover {
+    background-color: #817f7e;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.vision-card {
+    background: #5d2b15 !important;
+}
+
+.mission-card {
+    background: #5d2b15 !important;
+}
+
+.card-title {
+    font-size: 35px !important;
+    color: #e8aa80 !important;
+    font-weight: bold !important;
+}
+
+.card-text {
+    font-size: 20px;
+    color: #fcecda;
+}
+
+/* Scroll Animation */
+.animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Scroll Animation */
+.animate-left,
+.animate-right {
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-left {
+    transform: translateX(-50px);
+}
+
+.animate-right {
+    transform: translateX(50px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* footer section */
+.footer {
+    background: #111;
+    color: #ddd;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-about {
+    flex: 1;
+    max-width: 300px;
+    /* Adjust width for proper alignment */
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer h3,
+.footer h4 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-social a {
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    color: #f39c12;
+}
+
+.a1 {
+    font-size: 2rem;
+    /* Adjust size */
+    color: #000;
+    /* Default color */
+    margin: 0 15px;
+    /* Space between icons */
+    transition: color 0.3s ease;
+}
+
+.a1:hover {
+    color: #007bff;
+    /* Change color on hover */
+}

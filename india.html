@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #faddb2, #db9f67);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: #8B4513;
+            padding: 12px 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FFD700;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+        }
+
+        .state {
+            transition: transform 0.2s ease, fill 0.2s ease;
+        }
+
+        .state:hover {
+            transform: translateY(-9px);
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .state-label {
+            font-size: 16px;
+            font-weight: bold;
+            fill: rgb(121, 4, 4);
+            text-anchor: middle;
+            visibility: hidden;
+            z-index: 100;
+        }
+
+        .state-group:hover .state-label {
+            visibility: visible;
+        }
+
+        /* Layout */
+        .container1 {
+            margin-top: 80px;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            /* Aligns items vertically */
+            justify-content: space-between;
+            /* Ensures even spacing */
+            gap: 10px;
+            /* Reduces the space between the text and the map */
+            padding: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+            /* Centers the content */
+        }
+
+        .info-section {
+            flex: 1;
+            /* Takes up equal space */
+            max-width: 50%;
+            /* Ensures text doesn't stretch too much */
+            text-align: left;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            flex: 1;
+            /* Takes up equal space */
+            max-width: 90%;
+            margin-left: -700px;
+            /* Restricts map width */
+        }
+
+        .map-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-section,
+            .map-container {
+                max-width: 100%;
+                /* Full width on smaller screens */
+            }
+        }
+
+        /* footer section */
+        .footer {
+            background: #111;
+            color: #ddd;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-about {
+            flex: 1;
+            max-width: 300px;
+            /* Adjust width for proper alignment */
+        }
+
+        .footer p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer h3,
+        .footer h4 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .footer p,
+        .footer a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-social a {
+            font-size: 20px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #f39c12;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo2_transparent_dark.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="india.html">Start Your Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container1">
+        <div class="content">
+            <div class="map-container">
+                <svg width="887" height="775" viewBox="320 -19 887 775"
+                    style="transform: translate3d(320px, -19px, 0px);">
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1111 265L1110 256L1115 254L1117 250L1120 251L1128 249L1123 239L1123 237L1128 232L1120 232L1114 235L1113 234L1094 242L1088 240L1089 243L1079 252L1079 254L1076 257L1062 259L1057 256L1041 259L1038 254L1038 250L1040 250L1038 244L1029 244L1027 240L1029 238L1028 235L1033 236L1035 238L1043 234L1045 237L1047 235L1050 236L1054 231L1053 228L1063 222L1064 223L1066 221L1065 220L1067 216L1070 213L1081 214L1087 206L1087 204L1098 196L1101 198L1101 200L1106 202L1112 202L1112 204L1116 204L1119 199L1130 193L1134 199L1137 199L1132 203L1132 207L1139 203L1143 211L1139 213L1140 214L1136 217L1137 218L1135 220L1137 222L1139 220L1144 219L1147 222L1148 221L1151 223L1153 221L1160 225L1158 229L1160 229L1161 231L1159 234L1158 233L1153 238L1152 237L1149 241L1149 245L1155 253L1154 254L1148 252L1149 251L1146 247L1142 247L1140 249L1135 250L1134 249L1129 252L1126 256L1124 256L1122 260L1121 259L1117 261L1115 265L1112 265z">
+                        </path><text x="1115" y="245" class="state-label">Arunachal Pradesh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1110 256L1106 259L1103 258L1101 262L1093 265L1092 268L1087 271L1087 273L1083 277L1083 284L1078 287L1078 283L1068 294L1071 297L1071 299L1066 306L1065 312L1063 312L1061 321L1057 323L1055 319L1048 329L1047 326L1042 326L1044 314L1043 309L1047 311L1049 309L1047 306L1049 304L1050 305L1049 304L1056 302L1056 300L1052 296L1051 297L1052 292L1051 293L1046 288L1042 290L1041 289L1043 284L1041 284L1043 281L1042 280L1036 282L1035 279L1033 279L1030 284L1029 281L1020 289L1019 286L1015 286L1013 283L1008 283L1006 285L1006 283L1005 284L1003 282L995 283L991 287L990 289L992 291L991 293L989 293L989 295L989 283L985 277L989 271L989 263L995 263L998 260L1002 259L1005 262L1026 262L1035 259L1039 260L1049 257L1050 258L1053 256L1057 256L1061 259L1074 258L1089 243L1088 240L1094 242L1113 234L1114 235L1120 232L1128 232L1123 237L1123 239L1126 244L1125 245L1129 247L1125 250L1117 250L1116 253L1111 256z">
+                        </path><text x="1050" y="270" class="state-label">Assam</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M692 159L692 161L690 160L690 158L692 159z">
+                        </path><text x="691" y="157" class="state-label">Gujarat</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M709 472L709 477L711 479L706 488L712 490L710 492L709 491L708 494L706 494L707 496L705 498L708 502L707 508L706 507L707 512L704 515L702 515L710 519L707 521L708 528L700 527L697 529L697 532L699 534L696 538L700 546L698 550L692 548L691 549L693 551L691 559L693 562L696 562L694 564L696 568L698 568L699 565L702 565L705 569L705 565L708 569L706 569L704 572L706 574L705 576L703 572L700 573L697 572L696 569L694 569L697 574L696 579L700 579L700 575L702 577L706 577L707 580L709 580L711 578L712 579L715 576L715 574L719 574L718 577L722 577L720 581L728 583L727 588L730 589L732 593L728 598L730 599L727 598L725 602L721 600L719 601L717 599L714 600L712 605L710 605L709 609L711 609L707 614L713 617L711 621L707 621L706 625L703 624L699 626L696 624L692 628L693 629L687 629L676 623L676 620L673 622L670 621L669 618L667 618L659 611L660 608L659 609L657 605L656 607L652 603L650 603L651 602L647 601L642 576L639 573L639 569L634 556L630 554L630 552L632 552L631 551L635 549L635 541L633 535L634 534L630 534L633 531L636 532L638 527L638 525L636 525L638 523L639 524L639 520L635 518L636 517L634 513L637 514L637 512L639 511L641 513L644 511L644 509L649 508L650 503L655 506L657 506L658 503L665 503L665 491L669 494L669 492L672 495L682 495L683 494L681 492L681 488L683 488L686 484L686 486L688 484L689 486L691 484L690 481L692 482L694 480L694 476L696 474L699 475L698 474L701 472L703 468L706 472L708 471z">
+                        </path><text x="680" y="530" class="state-label">Karnataka</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1098 296L1096 301L1100 305L1100 307L1097 314L1095 314L1091 322L1092 323L1086 336L1081 333L1078 334L1078 332L1074 332L1072 334L1070 330L1066 332L1066 330L1063 331L1060 329L1062 314L1071 300L1074 302L1079 295L1078 294L1083 292L1088 295L1092 294L1096 290L1097 296z">
+                        </path><text x="1085" y="320" class="state-label">Manipur</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1047 306L1039 302L1030 304L1021 302L1002 304L1000 302L988 300L988 296L989 293L992 292L990 288L995 283L1002 282L1005 284L1006 283L1006 285L1008 283L1012 283L1015 286L1019 286L1020 289L1028 281L1029 284L1033 279L1035 279L1036 282L1042 280L1044 281L1041 283L1041 289L1042 290L1046 288L1051 293L1052 292L1051 297L1052 296L1056 300L1056 302L1048 304L1047 306z">
+                        </path><text x="1020" y="295" class="state-label">Meghalaya</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1060 322L1061 330L1068 331L1070 343L1068 356L1067 357L1064 355L1064 359L1062 362L1065 374L1063 377L1061 377L1062 379L1060 379L1058 383L1056 379L1054 378L1052 382L1050 378L1050 368L1048 361L1046 359L1046 349L1043 337L1045 335L1044 326L1047 326L1048 329L1055 319L1057 323L1060 322z">
+                        </path><text x="1055" y="350" class="state-label">Mizoram</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1110 256L1111 264L1107 270L1109 272L1108 278L1110 280L1106 285L1106 289L1101 295L1098 296L1096 295L1096 291L1090 295L1086 293L1085 294L1083 292L1080 293L1074 302L1068 294L1076 286L1077 283L1078 286L1082 284L1083 278L1089 268L1090 270L1093 265L1097 263L1098 264L1104 258L1105 259L1109 257z">
+                        </path><text x="1090" y="280" class="state-label">Nagaland</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M691 155L693 157L692 159L690 159L694 163L695 168L691 168L688 172L686 172L688 174L686 177L683 174L679 176L679 183L675 184L674 186L668 183L665 186L661 184L656 191L656 185L654 183L654 185L653 182L649 180L646 179L641 181L630 180L625 178L627 176L627 172L625 169L627 167L626 166L627 167L628 165L630 165L635 156L644 150L640 150L640 144L643 140L639 134L641 130L649 124L655 124L659 120L658 117L663 118L663 116L667 115L669 112L672 115L666 119L664 123L671 127L678 144L682 142L686 146L687 145L687 147L688 146L687 151L691 155z">
+                        </path><text x="670" y="160" class="state-label">Punjab</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M640 180L641 182L639 184L640 186L642 186L642 191L640 194L642 196L647 195L652 199L656 199L658 197L658 199L660 198L659 201L661 205L663 205L661 207L663 214L676 227L672 229L674 229L672 233L674 235L679 235L677 231L679 229L682 229L680 228L682 228L680 226L684 227L684 229L688 231L688 229L693 225L695 227L694 240L696 240L697 237L698 238L697 236L701 235L704 238L703 241L706 247L708 247L712 252L710 252L708 255L712 255L712 257L713 256L705 261L707 263L708 260L711 261L714 258L720 260L722 258L725 259L721 263L721 265L719 264L708 272L703 273L703 275L699 276L685 287L684 290L687 298L688 297L690 299L697 300L702 298L703 296L705 297L705 305L700 304L698 306L693 306L695 310L692 311L694 314L695 313L698 316L698 318L695 321L693 319L692 320L693 325L695 327L693 329L689 328L688 325L685 328L681 326L678 327L678 325L672 335L667 335L666 338L663 337L664 336L661 333L662 332L667 333L670 331L668 329L669 326L667 324L669 320L670 322L671 321L669 315L670 314L669 313L665 315L656 315L655 312L660 311L657 310L659 306L655 306L652 311L650 311L647 308L647 313L651 313L651 315L649 316L646 313L646 317L644 319L647 322L645 326L649 327L648 328L650 331L648 335L649 342L648 341L648 343L645 343L645 345L644 344L643 346L641 346L640 349L645 352L643 352L640 355L634 355L635 354L633 352L632 353L631 350L627 348L626 349L624 346L621 347L620 342L617 342L617 340L613 338L615 333L613 330L611 332L607 328L607 326L610 323L608 323L607 320L605 320L605 323L603 324L595 319L594 322L590 318L588 318L590 316L587 317L584 316L584 314L582 316L579 315L579 317L577 315L571 315L568 317L562 315L558 309L557 303L552 297L552 289L545 290L539 283L541 276L541 268L533 267L526 263L525 261L527 252L534 246L541 234L544 233L545 231L549 230L552 233L552 235L557 238L564 235L575 234L580 232L582 225L587 221L590 212L604 204L612 190L614 180L624 177L627 174L625 178L626 179L637 180z">
+                        </path><text x="640" y="260" class="state-label">Rajasthan</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M963 253L958 252L959 253L957 254L950 254L947 251L948 241L951 237L949 233L954 232L958 229L959 230L961 228L964 229L967 234L964 242L967 250L965 250L964 253z">
+                        </path><text x="960" y="245" class="state-label">Sikkim</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1042 320L1042 325L1045 327L1044 339L1040 339L1038 341L1037 339L1036 340L1037 344L1034 347L1033 344L1033 355L1030 358L1028 358L1024 350L1024 355L1022 353L1022 349L1018 340L1019 338L1020 339L1020 335L1022 332L1024 332L1024 329L1029 330L1030 327L1032 329L1032 327L1034 327L1035 329L1036 324L1038 322L1041 322L1041 319z">
+                        </path><text x="1030" y="335" class="state-label">Tripura</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M766 209L763 212L761 209L760 210L760 208L755 209L743 201L740 202L740 200L736 198L736 196L740 195L739 193L734 191L731 188L731 186L727 184L718 190L717 189L719 188L717 186L715 188L714 187L712 182L714 176L715 177L718 173L709 168L715 165L713 163L713 157L715 155L714 154L717 148L728 145L730 147L737 147L739 150L741 150L742 149L739 145L744 140L746 142L745 143L747 143L751 152L752 151L755 154L759 152L762 153L763 156L764 155L770 159L770 164L776 167L778 166L783 171L788 172L788 174L785 173L784 176L780 180L778 180L776 184L773 185L774 189L770 194L772 197L771 200L767 203L766 207z">
+                        </path><text x="760" y="160" class="state-label">Uttarakhand</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M771 461L773 464L775 463L779 466L782 474L783 473L787 475L786 477L789 485L785 485L784 488L794 493L793 495L791 495L791 497L788 498L786 497L784 501L779 501L779 499L775 501L774 500L773 503L778 504L777 508L774 506L773 507L772 504L768 502L765 505L766 508L763 511L759 509L748 513L746 517L747 520L742 520L740 524L739 523L737 526L733 524L728 524L726 526L725 525L725 527L722 530L720 528L708 528L707 520L710 519L702 515L704 515L707 512L707 500L704 498L710 491L712 491L706 488L706 486L709 485L708 484L711 480L709 478L710 472L708 468L711 465L713 465L716 459L718 459L714 455L716 451L715 450L717 448L716 447L718 446L721 449L723 449L723 445L726 444L725 438L727 434L725 434L728 433L729 435L738 436L738 439L739 438L741 440L740 441L746 443L747 440L751 442L760 440L764 445L761 453L763 453L764 458L762 459L767 462L770 462z">
+                        </path><text x="750" y="480" class="state-label">Telangana</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M949 268L950 269L952 267L951 270L953 274L950 275L942 284L945 286L944 287L946 289L948 289L948 294L944 294L941 297L943 300L942 301L940 301L939 299L937 299L934 302L933 301L927 307L927 311L925 312L926 313L924 317L915 317L911 323L907 321L908 318L905 318L902 313L900 314L896 312L893 315L893 318L892 317L890 319L886 319L881 323L877 323L874 320L875 319L873 319L870 322L868 322L867 325L862 321L863 320L861 318L859 320L857 319L856 316L853 319L844 319L845 316L842 313L840 307L841 302L851 297L851 295L852 296L857 291L857 289L862 291L863 288L866 290L870 288L868 285L859 282L856 278L856 276L860 274L853 270L855 268L856 269L857 266L865 266L861 262L861 260L857 260L856 254L854 254L854 248L852 248L853 245L857 245L859 243L863 247L870 248L870 254L872 256L875 256L879 260L883 260L882 261L884 263L893 260L895 261L895 265L897 267L901 265L905 267L909 266L917 271L920 271L925 267L926 271L929 271L931 273L933 271L940 272L942 270L944 270L947 273L949 268z">
+                        </path><text x="900" y="290" class="state-label">Bihar</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M683 628L681 630L680 629L679 632L683 633L686 636L684 638L685 639L690 639L689 640L691 642L688 645L694 648L692 653L692 659L696 661L702 658L701 659L703 661L701 664L702 670L700 674L706 678L700 688L702 692L700 696L703 700L698 706L685 690L681 681L679 667L671 648L670 640L662 626L655 619L648 603L651 601L650 603L652 603L656 607L657 606L657 608L660 609L659 610L666 618L667 617L671 621L676 620L676 623L683 626L683 628zM663 625L663 626z">
+                        </path><text x="680" y="650" class="state-label">Kerala</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M828 333L825 334L822 338L808 335L806 337L802 334L801 335L803 339L800 342L801 345L806 343L810 347L811 346L810 347L814 349L814 353L808 355L809 357L805 361L805 365L802 366L802 368L796 371L796 369L790 371L790 375L787 378L787 380L786 379L784 381L783 388L781 388L781 396L779 398L773 396L774 395L770 391L764 393L758 391L755 393L752 389L742 391L740 392L740 394L735 395L731 393L730 394L727 391L728 392L724 392L722 395L717 397L708 397L706 393L710 393L709 390L707 388L699 388L691 392L692 394L688 398L688 402L686 401L683 404L677 404L676 397L658 397L655 396L652 392L641 390L639 387L640 384L637 381L635 383L630 382L632 379L629 374L634 372L629 369L636 366L639 361L638 359L636 359L635 356L637 354L640 355L643 352L645 352L640 349L641 346L643 346L644 344L645 345L645 343L646 344L649 341L648 335L650 331L648 327L645 326L647 322L646 320L644 320L646 318L646 314L648 316L651 314L648 312L647 313L647 309L651 311L654 308L654 306L658 306L657 311L660 310L659 312L655 312L656 315L665 315L668 313L670 314L669 317L672 319L671 322L669 321L667 324L669 326L668 329L670 331L668 331L668 333L662 332L661 333L664 336L663 337L666 338L667 335L671 335L678 324L678 327L681 326L685 328L688 325L689 328L694 329L694 327L695 328L693 326L692 319L693 318L695 321L698 318L698 316L692 312L695 311L693 306L697 306L700 304L705 305L705 297L704 296L701 299L696 300L688 298L685 294L684 289L697 277L706 273L717 265L721 265L721 263L726 260L732 263L735 262L741 264L740 265L742 265L743 271L745 271L745 274L741 276L742 280L736 288L738 290L737 292L728 294L729 295L726 298L726 300L729 303L723 311L725 315L724 319L727 322L727 325L729 325L730 322L735 327L739 327L742 322L740 320L741 319L736 316L737 312L733 308L734 307L732 300L729 301L734 296L735 299L737 298L736 295L739 296L738 295L740 293L741 298L739 297L737 299L738 301L739 298L741 300L739 302L740 303L742 301L743 304L744 302L744 304L749 304L749 299L751 301L752 300L750 304L754 305L754 303L761 305L761 301L765 300L770 296L774 302L771 307L775 305L774 306L777 307L776 306L778 303L778 305L781 306L781 304L784 303L785 304L783 309L788 308L790 310L794 303L799 305L798 304L800 302L802 306L807 307L809 311L813 313L814 312L817 317L819 317L819 315L826 315L828 317L826 319L827 328L825 328L826 330L828 330L828 333zM751 306L750 304L750 306z">
+                        </path><text x="740" y="350" class="state-label">Madhya Pradesh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M1079 730L1082 735L1080 739L1081 740L1078 741L1079 740L1075 732L1079 730zM1076 725L1077 727L1075 729L1074 728L1076 726zM1069 712L1071 714L1070 715L1068 715L1068 713L1067 714L1068 712zM1072 712L1072 713zM1073 709L1073 710zM1063 704L1065 708L1062 705zM1065 706L1065 707zM1061 702L1061 702zM1056 684L1055 687L1055 684zM1049 646L1051 650L1050 653L1047 654L1046 649L1049 646zM1053 637L1054 637zM1072 707L1072 712L1070 708L1071 707zM1042 629L1044 630L1042 630zM1061 624L1061 624zM1051 620L1051 622zM1055 621L1054 621zM1050 629L1050 629zM1060 619L1061 623L1059 620zM1060 617L1060 619L1060 617zM1061 617L1061 619L1060 616zM1060 616L1059 616zM1062 615L1062 617L1062 615zM1052 631L1052 635L1052 631zM1059 610L1059 612L1059 610zM1058 610L1058 611zM1054 601L1053 601zM1054 600L1054 600zM1059 596L1058 596zM1061 581L1060 581zM1062 588L1061 588zM1053 597L1053 601L1053 597zM1056 599L1055 599zM1061 583L1061 589L1059 589L1062 591L1060 596L1059 595L1059 597L1057 597L1057 599L1056 590L1058 587L1057 586L1060 584zM1054 614L1054 616L1054 614zM1056 613L1058 614L1056 618L1054 618L1054 614L1056 613zM1058 614L1057 615L1058 614zM1063 614L1062 614zM1053 614L1055 616L1055 626L1053 628L1055 628L1054 632L1051 629L1049 623L1051 623L1053 615zM1054 613L1053 614zM1059 613L1059 613zM1058 599L1060 607L1058 610L1056 610L1058 612L1054 613L1053 606L1055 604L1056 605L1054 601L1058 599z">
+                        </path><text x="1050" y="620" class="state-label">Andaman and Nicobar Islands</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat" onclick="window.location.href='gujarat.html'">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="green" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M591 381L592 384L590 387L590 381zM528 370L528 371zM635 355L636 358L639 360L636 366L629 369L634 372L632 374L629 374L632 379L630 381L631 382L623 386L625 389L625 394L631 392L635 392L635 394L629 395L627 399L624 399L624 401L621 403L618 402L624 404L623 405L626 407L625 408L627 412L624 413L622 417L620 417L616 413L614 415L616 417L614 421L615 426L613 425L609 427L610 426L608 425L608 427L606 425L609 423L607 423L608 422L599 427L600 422L603 421L603 415L599 405L596 403L596 399L598 396L596 392L600 390L594 389L597 385L597 383L595 385L594 382L596 376L600 377L603 376L603 374L600 376L596 374L592 376L592 374L589 378L587 383L588 386L586 386L589 392L582 403L561 413L555 413L552 411L551 412L540 405L533 396L519 383L513 375L513 373L515 370L515 372L518 371L518 377L521 374L527 372L528 373L531 370L532 371L539 368L545 361L545 359L547 359L547 361L548 360L547 358L549 358L553 354L553 352L545 352L538 359L530 362L524 362L517 360L506 353L504 350L505 349L500 346L502 344L499 345L497 342L494 341L496 339L496 335L499 333L508 333L510 324L511 327L513 325L527 325L531 328L537 328L539 325L550 322L550 325L554 327L558 326L557 325L562 322L559 318L562 315L566 317L570 315L577 315L579 317L579 315L582 316L584 314L584 316L590 317L588 317L594 322L595 319L599 323L605 323L604 322L606 320L607 323L610 324L608 324L608 329L611 332L613 330L615 333L613 335L613 338L615 338L617 342L620 341L621 346L625 347L625 349L627 348L631 350L631 352L633 352L635 355zM604 423L605 422L604 423zM533 370L533 369zM504 348L503 348zM536 368L536 367zM537 367L538 368L537 367z">
+                        </path>
+                        <text x="580" y="370" class="state-label">Gujarat</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M600 639L600 638z">
+                        </path><text x="600" y="640" class="state-label">Gujarat</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M873 453L869 451L870 452L863 458L863 460L857 460L854 459L851 456L851 454L850 457L846 451L847 452L845 452L845 454L843 452L843 455L840 454L840 456L842 457L841 459L836 460L833 463L833 465L835 465L833 468L834 469L830 470L830 468L828 468L828 470L825 471L825 473L821 465L818 468L819 471L817 473L818 476L816 478L811 477L803 482L802 481L801 483L796 482L798 480L799 473L802 470L804 470L809 464L808 463L812 461L815 456L813 446L814 445L811 442L811 436L806 431L809 428L811 430L815 430L818 434L823 433L823 435L826 433L826 431L819 429L820 419L818 417L818 410L820 410L824 406L824 402L828 403L832 401L832 403L836 403L840 397L842 398L840 394L841 391L844 390L842 389L844 388L843 387L846 386L845 381L848 376L856 372L857 371L855 369L862 373L867 371L880 370L880 376L878 380L881 379L883 381L886 378L888 378L892 380L896 379L896 381L899 382L902 377L902 373L900 370L902 368L910 374L914 374L918 376L917 377L920 379L924 380L925 385L928 382L929 385L933 387L935 391L933 393L932 392L933 393L927 394L920 401L923 411L919 413L925 412L919 417L919 422L913 426L909 432L896 435L886 440L875 449L874 452z">
+                        </path><text x="860" y="420" class="state-label">Odisha</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M610 427L608 429L604 427L605 426L603 424L607 422L607 425L609 427zM601 421L602 419L602 421zM560 412L557 413L559 413z">
+                        </path><text x="605" y="420" class="state-label">Gujarat</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M728 112L726 113L728 105L724 108L723 107L719 109L712 99L704 104L699 99L698 100L695 98L694 95L692 95L693 92L691 92L684 84L682 84L682 82L679 83L680 79L677 77L675 73L673 71L670 72L666 65L664 66L659 62L659 57L656 54L650 54L640 50L636 50L641 47L640 41L634 43L622 37L621 33L623 29L612 27L608 24L609 20L607 19L601 19L598 21L594 17L596 15L595 10L599 8L608 -1L608 -4L626 -4L621 -9L622 -10L628 -7L637 -12L641 -11L643 -15L649 -10L651 -12L654 -11L657 -14L661 -7L665 -6L670 1L683 7L684 10L689 11L692 15L690 17L694 22L705 24L707 28L704 29L706 31L712 31L713 29L717 31L719 27L721 29L723 25L724 26L729 22L731 23L734 20L746 20L747 16L750 16L751 19L759 22L764 20L767 25L771 27L772 31L768 40L769 42L766 48L766 52L762 52L759 54L760 57L754 58L755 64L751 70L752 71L746 69L744 71L740 71L743 78L742 79L744 81L740 81L740 87L744 91L752 92L750 98L756 106L751 112L751 110L749 110L741 117L737 113L736 108L731 109L729 111z">
+                        </path><text x="700" y="50" class="state-label">Ladakh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M691 92L690 94L683 94L680 96L680 98L672 102L670 101L669 102L672 108L670 112L662 118L651 112L650 114L647 112L644 113L643 103L640 106L638 104L637 105L630 102L627 99L623 100L621 96L619 96L619 79L616 65L614 62L615 57L617 55L620 56L622 50L629 47L630 41L634 43L640 41L641 47L636 50L640 50L645 53L656 54L659 57L659 62L663 66L666 65L666 67L671 72L674 71L675 75L680 79L678 83L684 83L691 92z">
+                        </path><text x="660" y="90" class="state-label">Jammu and Kashmir</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M840 330L845 332L844 333L849 337L849 340L851 342L853 343L856 341L856 354L858 354L859 357L863 357L864 360L861 363L861 365L856 367L857 370L855 373L847 377L845 380L846 385L843 389L844 390L842 390L840 394L842 398L840 397L836 403L832 403L832 401L828 403L824 402L824 406L820 410L818 410L818 418L820 420L819 428L824 431L826 430L826 434L823 436L822 433L818 434L815 430L814 431L809 428L806 431L811 436L811 442L814 445L813 446L816 456L812 461L808 463L809 464L804 470L802 470L799 473L798 480L795 483L792 482L789 484L787 483L787 474L782 474L781 469L778 465L776 463L773 464L770 460L772 459L771 454L774 448L777 445L780 448L785 443L782 440L780 440L780 438L776 434L775 435L776 436L774 432L777 431L777 427L773 426L779 422L779 417L775 415L778 414L777 409L774 406L781 396L781 388L783 388L784 381L786 379L787 380L787 378L790 375L790 371L794 369L796 369L796 371L799 368L800 369L805 364L805 360L807 360L809 357L808 356L814 353L814 349L812 347L811 348L811 346L810 347L808 344L804 343L802 345L800 343L803 340L801 336L803 334L805 337L815 336L822 338L823 336L829 333L831 335L836 335L840 330z">
+                        </path><text x="810" y="380" class="state-label">Chhattisgarh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M701 209L704 213L704 218L702 218L702 220L700 220L697 217L693 217L695 214L695 210L698 208L700 209z">
+                        </path><text x="700" y="215" class="state-label">Delhi</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M631 534L634 535L634 541L636 543L634 543L634 551L633 550L630 552L626 547L626 542L623 540L625 540L621 533L625 531L627 535L630 535z">
+                        </path><text x="630" y="545" class="state-label">Goa</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M710 169L710 171L702 178L701 183L699 185L700 187L698 189L700 194L699 203L701 205L701 209L695 209L695 215L693 216L693 218L696 217L700 220L704 218L707 221L707 226L709 226L707 229L708 232L703 236L697 235L698 237L696 238L696 240L694 240L696 227L693 225L686 232L686 230L684 230L685 229L680 226L682 228L680 228L680 230L677 230L679 235L674 235L672 233L674 229L672 229L676 227L670 220L668 221L669 220L663 215L661 207L663 205L661 205L659 201L660 198L653 199L650 198L650 196L647 194L646 196L643 196L640 193L642 192L642 186L639 185L639 183L641 182L640 181L647 179L651 182L653 181L653 183L655 183L656 185L654 188L657 191L658 187L661 185L664 186L670 184L672 186L677 184L679 182L677 180L679 175L682 176L682 174L685 177L688 175L687 172L686 173L691 168L694 168L695 165L692 160L692 154L700 161L699 164L709 169z">
+                        </path><text x="690" y="200" class="state-label">Haryana</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M728 112L730 113L729 114L731 114L729 119L733 120L732 122L736 126L735 131L738 136L735 139L737 141L736 144L739 144L741 149L740 150L737 148L738 147L731 147L728 145L717 148L715 150L715 154L713 154L715 156L713 156L714 157L712 159L715 164L714 166L710 167L710 169L708 167L705 168L699 164L700 161L694 155L693 156L687 151L687 145L686 146L682 142L678 144L671 127L664 124L666 122L665 120L672 114L670 113L672 106L669 102L674 101L677 98L680 98L682 94L686 93L689 94L692 92L694 97L696 99L700 99L700 101L704 104L712 99L719 109L723 107L724 108L727 105L727 112z">
+                        </path><text x="710" y="130" class="state-label">Himachal Pradesh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M940 301L942 303L941 304L946 308L943 312L944 313L942 313L945 316L944 318L942 318L942 322L938 327L940 327L937 328L938 329L936 329L934 333L930 331L930 335L927 336L928 337L922 335L918 340L912 341L908 347L904 344L905 343L902 342L902 344L898 345L898 353L902 353L905 357L913 358L911 359L911 363L916 365L915 367L919 369L918 370L921 375L916 376L902 368L900 370L902 372L900 376L902 377L901 380L897 382L896 379L892 380L888 378L886 378L883 381L881 379L878 380L881 374L880 371L877 370L867 371L865 373L859 372L859 370L856 368L860 365L864 358L860 356L859 357L859 355L856 354L856 342L851 342L848 336L846 336L845 333L842 330L840 330L842 326L841 324L843 324L841 321L842 320L849 320L856 316L858 320L860 320L859 319L861 318L865 324L871 322L873 319L875 319L874 320L877 323L881 323L885 319L891 319L891 317L894 317L894 313L897 312L903 314L905 318L908 317L907 321L911 323L915 317L924 317L928 305L930 305L933 301L934 302L937 299L940 300z">
+                        </path><text x="900" y="340" class="state-label">Jharkhand</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M759 622L760 623L759 622zM746 684L746 683zM762 619L759 622L759 620L757 621L760 624L758 624L760 626L759 631L761 635L761 644L760 643L758 645L761 649L762 659L750 659L747 662L748 665L741 673L739 679L742 682L748 682L751 685L748 683L739 683L734 686L728 687L723 691L721 702L713 709L709 709L709 711L704 710L698 706L702 700L700 696L702 693L700 688L705 678L704 675L703 676L700 674L702 670L701 664L703 661L701 659L702 658L696 661L692 659L692 653L694 649L692 646L689 645L691 641L689 639L690 638L684 639L686 636L683 633L679 632L679 630L681 630L684 627L686 627L686 629L692 629L694 625L706 625L707 621L711 621L714 617L711 615L707 615L707 613L710 612L710 605L712 605L715 600L717 599L719 601L720 600L724 602L724 604L725 603L730 605L735 595L746 596L748 593L749 594L752 591L752 589L758 592L759 589L760 590L764 587L764 585L766 585L765 584L770 585L770 583L772 586L770 603L768 610L762 618zM757 619L758 619zM756 620L756 621zM757 621L757 621zM756 623L756 623zM756 624L757 624z">
+                        </path><text x="730" y="640" class="state-label">Tamil Nadu</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M751 306L750 305L751 306zM766 209L776 217L777 213L780 214L780 216L792 222L795 227L796 226L808 235L809 233L812 233L820 239L826 238L827 244L836 245L840 248L842 247L842 244L852 247L853 249L854 248L853 250L855 251L854 254L856 254L857 260L861 260L861 262L865 266L857 266L857 268L853 270L859 272L860 274L856 276L856 278L861 283L870 287L870 289L857 289L857 291L850 297L841 302L840 307L845 318L841 321L843 323L841 329L836 335L830 334L827 331L828 330L825 329L827 329L828 324L826 319L828 317L826 315L820 315L820 317L818 317L816 313L815 314L814 312L813 313L809 311L807 307L802 305L801 306L802 305L800 302L798 304L799 305L795 303L793 304L792 309L791 308L790 310L788 308L783 308L785 304L784 303L781 304L781 306L778 305L778 303L778 305L776 305L777 306L775 308L775 305L771 307L774 302L770 296L767 299L766 298L763 301L761 301L761 305L755 303L753 304L754 305L752 305L751 302L753 300L749 300L750 299L748 299L748 301L750 301L748 301L749 304L743 304L742 301L740 303L739 302L741 299L739 298L739 300L737 300L740 297L739 298L741 298L740 293L738 295L739 296L736 295L737 298L735 299L735 296L732 297L732 299L731 298L731 300L729 300L732 301L734 310L736 310L737 312L736 317L739 316L741 320L740 321L742 322L737 328L730 322L729 325L726 324L727 323L724 319L725 316L723 311L729 303L726 300L726 298L729 295L729 293L738 291L736 288L740 284L742 280L741 277L745 271L743 271L741 267L742 266L740 264L736 262L731 263L727 260L724 261L725 258L720 260L713 258L713 260L711 261L706 261L714 256L713 257L708 254L711 252L710 248L706 247L703 238L703 236L706 235L707 232L709 232L707 230L707 227L709 226L707 226L708 221L703 217L704 213L701 210L701 206L699 203L700 194L698 189L700 187L700 181L707 174L710 169L709 168L711 168L718 173L713 180L713 184L715 187L718 186L718 190L727 184L731 187L731 189L740 194L739 196L736 197L737 199L740 200L740 202L743 201L747 205L750 205L751 208L761 208L760 210L761 209L763 211L766 210z">
+                        </path><text x="770" y="260" class="state-label">Uttar Pradesh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M952 394L951 393L952 394zM949 382L949 382zM983 283L982 284L983 283zM964 383L963 382L964 383zM947 392L947 394L947 392zM958 392L959 393L958 391zM951 393L951 392zM945 389L945 388zM958 386L957 387L958 386zM955 386L952 387L954 386zM945 392L946 391zM969 390L970 389zM966 391L966 393L965 391zM964 391L965 392L963 392L964 390zM960 391L959 391zM951 390L952 391L951 389zM968 390L969 391L968 390zM960 391L959 390L960 391zM954 391L954 389L954 391zM956 388L956 390L955 388zM959 389L958 389zM963 390L962 389L963 390zM968 388L970 391L968 388zM967 391L966 389L968 389zM970 387L971 391L968 387L970 386zM966 387L966 391L964 389L965 388zM957 387L956 391L957 387zM949 390L950 391L947 390L949 387L949 389zM955 389L955 388zM959 387L960 390L958 388L959 387zM967 387L966 386zM964 385L965 390L963 390L962 388L963 384zM965 387L965 386zM960 387L960 389L960 387zM960 388L960 388zM953 388L953 388zM955 388L955 387zM956 387L956 386zM955 387L954 387zM950 385L950 389L948 387L949 385zM969 384L970 385L968 387L969 384zM949 385L949 384zM958 386L958 385zM960 387L960 386zM961 385L961 387L961 384zM968 384L967 387L967 383zM966 385L965 384zM961 384L961 384zM959 386L959 386zM958 385L955 386L957 384L958 385zM963 383L965 384L963 384zM949 384L950 384zM963 253L965 253L966 257L968 257L969 259L970 258L971 261L978 260L980 262L984 262L984 264L989 264L989 272L985 276L986 277L985 278L985 276L983 278L984 279L982 283L978 281L977 282L972 277L972 273L968 270L967 273L969 273L970 275L966 276L964 274L963 275L963 273L962 274L962 272L955 266L954 269L957 270L958 273L956 273L954 275L955 276L952 277L949 282L950 287L954 288L961 295L965 294L965 297L968 300L969 299L967 303L957 302L957 307L954 310L950 308L947 315L950 320L963 325L964 332L962 335L960 335L959 340L965 346L963 350L965 352L969 351L966 357L969 361L967 363L970 374L969 375L971 377L971 383L968 383L969 380L968 382L967 381L968 380L967 383L965 383L963 380L964 378L962 380L962 383L961 377L960 384L959 385L957 383L955 387L955 385L952 386L953 392L951 391L952 390L950 384L952 380L951 377L946 376L951 379L947 381L948 382L942 389L936 391L933 387L929 385L929 382L927 382L926 385L924 384L923 379L917 378L921 374L918 370L919 369L915 367L916 365L914 365L911 362L913 357L905 357L901 353L899 353L897 349L899 345L902 345L902 342L905 343L904 344L907 347L912 341L919 340L919 337L921 335L925 337L927 337L927 335L930 336L929 331L934 333L935 330L937 330L937 328L940 327L938 327L942 323L941 318L945 317L942 313L944 313L943 312L946 309L940 301L943 300L941 297L944 294L948 294L948 290L942 284L943 281L946 280L946 278L948 278L953 273L951 269L952 268L949 267L951 263L950 258L946 254L947 251L950 254L956 254L959 253L958 252L963 253z">
+                        </path><text x="960" y="320" class="state-label">West Bengal</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M873 453L856 473L848 476L837 489L826 494L817 501L816 504L818 506L818 504L817 503L818 509L816 513L804 519L794 519L790 526L791 527L787 530L788 531L786 533L784 533L782 529L778 529L770 535L766 543L766 553L769 559L767 570L770 578L770 585L765 584L766 585L764 585L764 587L760 589L759 592L757 590L752 589L752 591L745 596L739 596L739 594L736 595L733 597L734 598L732 604L731 603L726 605L724 603L725 600L727 598L730 599L729 596L732 593L732 591L727 588L727 583L723 583L723 581L720 581L722 577L718 577L719 574L715 574L715 576L709 580L707 580L706 577L702 577L701 575L699 579L696 579L697 574L694 569L696 569L697 572L703 572L705 576L706 575L704 570L708 570L708 567L706 565L705 569L703 565L700 565L699 568L696 568L694 566L696 562L691 560L691 555L693 553L691 549L692 547L698 550L700 546L700 543L697 541L696 538L697 535L699 535L697 532L698 528L720 528L722 530L725 527L725 525L726 526L728 524L734 524L735 526L737 526L738 523L739 524L742 520L747 520L747 513L759 509L763 511L766 508L765 505L768 502L770 502L772 506L776 508L778 507L778 505L777 503L773 503L774 500L775 502L776 499L784 501L784 499L786 498L785 497L787 498L794 494L795 493L784 488L786 484L788 485L791 482L801 483L810 477L814 477L816 479L816 477L818 477L818 468L821 465L825 473L825 471L827 471L828 468L832 470L835 465L834 466L833 463L836 460L838 461L842 458L840 455L841 454L843 456L843 452L845 454L845 452L847 452L846 451L850 456L851 454L851 456L857 460L862 460L866 454L869 454L871 452L869 452L871 450L872 452zM815 508L816 510L817 509L815 509z">
+                        </path><text x="760" y="550" class="state-label">Andhra Pradesh</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M761 644L760 647L758 645L761 643zM663 625L663 626zM756 623L756 623zM760 624L758 624L760 624zM756 624L756 624zM815 508L817 508L816 510L815 508zM761 621L760 623L758 623L758 621L760 621zM759 622L760 622zM757 621L757 621zM756 620L756 622L756 619zM757 619L757 620zM761 620L762 619z">
+                        </path><text x="760" y="625" class="state-label">Gujarat</text>
+                    </g>
+                    <g class="state-group" data-name="Gujarat">
+                        <path class="state" stroke="white" stroke-opacity="1" stroke-width="1" stroke-linecap="round"
+                            stroke-linejoin="round" fill="rgb(193, 74, 44)" fill-opacity="0.7" fill-rule="evenodd"
+                            d="M779 398L780 399L775 402L774 406L777 409L778 414L775 415L779 417L779 422L774 424L774 426L777 427L777 431L774 432L776 434L775 435L776 436L776 434L780 438L780 440L782 440L785 443L783 447L778 447L778 445L773 449L771 454L773 459L770 462L766 462L763 459L763 453L761 453L763 451L764 445L762 442L759 440L755 442L747 440L746 443L740 441L741 440L739 438L738 439L739 438L737 436L729 435L726 432L726 443L723 445L723 449L721 449L718 446L716 448L714 455L718 459L716 459L711 466L710 465L708 472L706 472L705 469L702 468L698 475L695 474L694 481L690 481L691 484L689 486L687 484L686 486L686 484L681 489L683 494L682 495L672 495L669 492L669 494L667 492L666 493L666 491L664 494L666 496L666 503L657 503L656 506L650 503L649 508L645 509L641 513L639 511L635 513L634 514L636 516L636 519L639 520L639 524L638 523L636 525L638 525L638 527L635 532L631 532L630 535L628 535L627 532L620 532L619 528L616 526L612 514L613 511L610 496L611 495L609 493L608 483L606 481L604 473L607 473L607 475L607 471L606 472L603 469L604 466L601 457L601 447L599 443L600 440L597 434L598 431L600 433L599 428L602 425L604 425L606 429L609 429L613 425L615 425L614 421L616 417L614 415L616 413L620 417L622 417L624 413L627 412L625 408L626 407L618 402L624 402L627 396L635 394L635 392L626 394L624 393L625 385L637 381L640 384L639 387L641 390L652 392L653 395L658 397L676 397L677 404L683 404L685 401L688 402L688 398L693 391L694 392L696 389L702 389L707 387L709 389L709 393L710 392L706 394L707 397L720 396L723 394L723 392L724 393L728 391L729 394L730 393L735 395L740 394L741 391L752 389L754 393L758 391L761 393L771 391L775 397L776 396L779 398zM604 423L605 423z">
+                        </path><text x="655" y="450" class="state-label">Maharashtra</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="info-section">
+                <h2><b>Embark on a Timeless Journey Through India's Glorious Heritage</b></h2>
+                <p style="font-size: 19px;">
+                    India is not just a land; it’s a living legend, where the echoes of ancient chants blend seamlessly
+                    with the rhythms of modern life. Every stone, every river, and every melody holds a secret—whispers
+                    of empires that rose and fell, artisans who sculpted eternity, and traditions that have defied time
+                    itself,every corner of this nation is a living museum of culture, art, and tradition.
+
+                    From the enigmatic carvings of Ellora to the floating palaces of Udaipur, from lost cities buried in
+                    time to rituals that have endured for over 5,000 years, India is a vast canvas where history and
+                    mythology intertwine.
+                    <br><br>
+                    💠 What if walls could speak? They would tell tales of warriors, poets, and visionaries who shaped
+                    civilizations.<br>
+                    💠 What if the stones could speak? They would tell of the intricate carvings at Khajuraho, where
+                    artistry and devotion merge in timeless elegance.<br>
+                    💠 What if the corridors could remember? They would recount the footsteps of scholars and saints
+                    who once walked the halls of Nalanda, one of the world’s greatest ancient universities.<br><br>
+                    <b>Click on a region of the map and begin your unforgettable journey through India's unparalleled
+                        legacy! 🌏✨</b>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <h3>Sanskriti Journey</h3>
+                <h6>Step into India's Soul – Where Heritage Meets You!</h6>
+                <p>Sanskriti Journey unveils India's rich heritage, from majestic monuments to timeless temples. Explore
+                    history, embrace tradition!</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>&#9993; info@sanskritijourney.com</p> <!-- Envelope Icon -->
+                <p>&#9742; +91 98765 43210</p> <!-- Telephone Icon -->
+                <p>&#128205; AHEMDABAD, India</p> <!-- Location Pin Icon -->
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a class="a1"><i class="fab fa-twitter"></i></a>
+                <a class="a1"><i class="fab fa-instagram"></i></a>
+                <a class="a1"><i class="fab fa-youtube"></i></a>
+                <a class="a1"><i class="fab fa-facebook"></i></a>
+
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
